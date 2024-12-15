@@ -22,14 +22,24 @@ public class App
 
         phone.sendMessage("0743005082", "Am ajuns acasa.");
 
+        phone.sendMessage("0743005082", "Plec la magazin.");
+
+        phone.sendMessage("0743005082", "Am revenit din nou.");
+
         phone.getFirstMessage("0743005082");
 
-        phone.getSecondMessage("phone number");
+        phone.getSecondMessage("0743005887");
 
 // make a call to the second contact from the previously listed
 
         phone.call("0743005888");
 
         phone.viewHistory();
+
+        phone.getFirstContact();
+
+        phone.seeAllContacts();
+
+        phone.seeAllMessages("0743005082");
     }
 }

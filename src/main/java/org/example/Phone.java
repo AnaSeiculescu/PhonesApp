@@ -19,4 +19,6 @@ interface Phone {
 	public void getFirstMessage(String phoneNumber);
 
 	public void getSecondMessage(String phoneNumber);
+
+	public void seeAllMessages(String phoneNumber);
 }

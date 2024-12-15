@@ -36,7 +36,7 @@ public abstract class Samsung implements Phone {
 	}
 
 	public void seeAllContacts() {
-		System.out.println("Your contacts are: " + "\n");
+		System.out.println("Your contacts are: ");
 		if (contacts.isEmpty()) {
 			System.out.println("Your contact list is empty.");
 		} else {
@@ -60,16 +60,16 @@ public abstract class Samsung implements Phone {
 		System.out.println("Contact not found!");
 	}
 
-	public void seeAllMessages(HashMap<String, Contact> contacts, String contactId) {
-		Contact contact = contacts.get(contactId);
-
-		if (contact != null) {
-			System.out.println("Messages for " + contact.getFirstName() + " " + contact.getLastName() + " " + contact.getPhoneNumber() + ":");
-			for (String message : contact.getMessages()) {
-				System.out.println(message);
+	public void seeAllMessages(String phoneNumber) {
+		for (Contact contact : contacts.values()) {
+			if (contact != null && contact.getPhoneNumber().equals(phoneNumber)) {
+				System.out.println("Messages for " + contact.getFirstName() + " " + contact.getLastName() + " " + contact.getPhoneNumber() + ":");
+				for (String message : contact.getMessages()) {
+					System.out.println(message);
+				}
+				return;
 			}
-		} else {
-			System.out.println("Contact with ID " + contactId + " not found.");
+			System.out.println("Contact with phone number " + phoneNumber + " not found.");
 		}
 	}
 
@@ -94,12 +94,14 @@ public abstract class Samsung implements Phone {
 	}
 
 	public void getFirstContact() {
+		Contact firstContact = null;
 		if (contacts.isEmpty()) {
 			System.out.println("Your contact list is empty.");
 		} else {
-			for (Map.Entry entry : contacts.entrySet()) {
-				if (entry.getKey() == "1") {
-					System.out.println("Your first contact is: " + entry);
+			for (Map.Entry<Integer, Contact> entry : contacts.entrySet()) {
+				if (entry.getKey() == 1) {
+					firstContact = entry.getValue();
+					System.out.println("Your first contact is: " + firstContact);
 				}
 			}
 		}
@@ -122,7 +124,8 @@ public abstract class Samsung implements Phone {
 		for (Contact contact : contacts.values()) {
 			if (contact != null && contact.getPhoneNumber().equals(phoneNumber)) {
 				String firstMessage =  contact.getMessages().size() > 0 ? contact.getMessages().get(0) : "No messages.";
-				System.out.println("First message is :" + firstMessage);
+				System.out.println("First message from " + contact.getFirstName() + " is: " + firstMessage);
+				return;
 			}
 		}
 		System.out.println("The contact whom message you are requesting is not in your list, or the list empty.");
@@ -133,6 +136,7 @@ public abstract class Samsung implements Phone {
 			if (contact != null && contact.getPhoneNumber().equals(phoneNumber)) {
 				String secondMessage =  contact.getMessages().size() > 1 ? contact.getMessages().get(1) : "No second message.";
 				System.out.println("Second message is: " + secondMessage);
+				return;
 			}
 		}
 		System.out.println("The contact whom message you are requesting is not in your list, or the list empty.");
