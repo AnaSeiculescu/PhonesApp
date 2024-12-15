@@ -2,7 +2,7 @@ package org.example;
 
 interface Phone {
 
-	void addContact(String id, String phoneNumber, String firstName, String lastName);
+	void addContact(Integer id, String phoneNumber, String firstName, String lastName);
 
 	void seeAllContacts();
 
@@ -11,4 +11,12 @@ interface Phone {
 	void call(String phoneNumber);
 
 	void viewHistory();
+
+	public void getFirstContact();
+
+	public void getLastContact();
+
+	public void getFirstMessage(String phoneNumber);
+
+	public void getSecondMessage(String phoneNumber);
 }

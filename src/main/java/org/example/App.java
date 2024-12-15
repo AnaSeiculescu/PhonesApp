@@ -8,13 +8,13 @@ public class App
 
         Phone phone = new SamsungGalaxy6("587125458652325");
 
-        phone.addContact("1", "0743005082", "Bogdan", "Pop");
+        phone.addContact(1, "0743005082", "Bogdan", "Pop");
 
-        phone.addContact("2", "0743005888", "Alina", "Cazacu");
+        phone.addContact(2, "0743005888", "Alina", "Cazacu");
 
-//        phone.getFirstContact();
+        phone.getFirstContact();
 
-//        phone.getLastContact();
+        phone.getLastContact();
 
 // send a message to the first contact from the previously listed
 
@@ -22,9 +22,9 @@ public class App
 
         phone.sendMessage("0743005082", "Am ajuns acasa.");
 
-//        phone.getFirstMessage("phone number");
+        phone.getFirstMessage("0743005082");
 
-//        phone.getSecondMessage("phone number");
+        phone.getSecondMessage("phone number");
 
 // make a call to the second contact from the previously listed
 

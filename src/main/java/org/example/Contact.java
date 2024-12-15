@@ -32,13 +32,13 @@ public class Contact {
 		messages.add(message);
 	};
 
-	public String getFirstMessage() {
-		return messages.size() > 0 ? messages.get(1) : "No messages.";
-	}
-
-	public String getSecondMessage() {
-		return messages.size() > 1 ? messages.get(2) : "No second message.";
-	}
+//	public String getFirstMessage() {
+//		return messages.size() > 0 ? messages.get(1) : "No messages.";
+//	}
+//
+//	public String getSecondMessage() {
+//		return messages.size() > 1 ? messages.get(2) : "No second message.";
+//	}
 
 	public List<String> getMessages() {
 		return messages;

@@ -11,7 +11,7 @@ public abstract class Samsung implements Phone {
 	private final String material;
 	private final String IMEI;
 
-	private final Map<String, Contact> contacts;
+	private final Map<Integer, Contact> contacts;
 	private final List<String> callHistory;
 
 	public Samsung(int batteryLife, String IMEI, String color, String material) {
@@ -23,7 +23,7 @@ public abstract class Samsung implements Phone {
 		this.callHistory = new ArrayList<>();
 	}
 
-	public void addContact(String id, String phoneNumber, String firstName, String lastName) {
+	public void addContact(Integer id, String phoneNumber, String firstName, String lastName) {
 		if (contacts.containsKey(id)) {
 			System.out.println("Contact ID already exists.");
 		} else {
@@ -31,14 +31,18 @@ public abstract class Samsung implements Phone {
 		}
 	}
 
-	public Contact getContactById(String id) {
+	public Contact getContactById(int id) {
 		return contacts.get(id);
 	}
 
 	public void seeAllContacts() {
 		System.out.println("Your contacts are: " + "\n");
-		for (Map.Entry entry : contacts.entrySet()) {
-			System.out.println(entry.getKey() + " " + entry.getValue());
+		if (contacts.isEmpty()) {
+			System.out.println("Your contact list is empty.");
+		} else {
+			for (Map.Entry entry : contacts.entrySet()) {
+				System.out.println(entry.getKey() + " " + entry.getValue());
+			}
 		}
 	}
 
@@ -89,5 +93,48 @@ public abstract class Samsung implements Phone {
 		}
 	}
 
+	public void getFirstContact() {
+		if (contacts.isEmpty()) {
+			System.out.println("Your contact list is empty.");
+		} else {
+			for (Map.Entry entry : contacts.entrySet()) {
+				if (entry.getKey() == "1") {
+					System.out.println("Your first contact is: " + entry);
+				}
+			}
+		}
+	}
 
+	public void getLastContact() {
+		int maxId = -1;
+		Contact lastContact = null;
+
+		for (Map.Entry<Integer, Contact> entry : contacts.entrySet()) {
+			if (entry.getKey() > maxId) {
+				maxId = entry.getKey();
+				lastContact = entry.getValue();
+			}
+		}
+		System.out.println("Your last contact is: " + lastContact);
+	}
+
+	public void getFirstMessage(String phoneNumber) {
+		for (Contact contact : contacts.values()) {
+			if (contact != null && contact.getPhoneNumber().equals(phoneNumber)) {
+				String firstMessage =  contact.getMessages().size() > 0 ? contact.getMessages().get(0) : "No messages.";
+				System.out.println("First message is :" + firstMessage);
+			}
+		}
+		System.out.println("The contact whom message you are requesting is not in your list, or the list empty.");
+	}
+
+	public void getSecondMessage(String phoneNumber) {
+		for (Contact contact : contacts.values()) {
+			if (contact != null && contact.getPhoneNumber().equals(phoneNumber)) {
+				String secondMessage =  contact.getMessages().size() > 1 ? contact.getMessages().get(1) : "No second message.";
+				System.out.println("Second message is: " + secondMessage);
+			}
+		}
+		System.out.println("The contact whom message you are requesting is not in your list, or the list empty.");
+	}
 }
